@@ -8,7 +8,7 @@ Bentar ada beberapa peraturan di codingan gua ini cuy
 3. nanti kalo ada lagi gua kasih tau....
 
 
-oke cuy gua jelasin dulu nih, disini gua pisahin bloc berdasarkan featurenya, kaya peraturan pertama yg udah gua jelasin diatas, ini gua lakuin biar lebih mudah dalam maintenisnya, jadi kalo aplikasi lu punya banyak fitur lu gak perlu takut lagi kalo lu edit di satu fitur eh nanti **errornya merembet kemana-mana**. contoh nih gua punya fitur nampilin list product, nah yg berhubungan sama list product ini gua buat disatu feature, fitur yg berhubungan sama list product gua pisah di featur lainya. 
+oke cuy gua jelasin dulu nih, disini gua pisahin bloc berdasarkan featurenya, kaya peraturan pertama yg udah gua jelasin diatas, ini gua lakuin biar lebih mudah dalam maintenisnya, jadi kalo aplikasi lu punya banyak fitur lu gak perlu takut lagi kalo lu edit di satu fitur eh nanti **errornya merembet kemana-mana**. contoh nih gua punya fitur nampilin list product, nah list product ini gua buat disatu feature, fitur yg berhubungan sama list product gua pisah di featur lainya. 
 
 A : Gimana dong cara ambil datanya? 
 B : ya lu tinggal kirim aja lewat constructor. 
