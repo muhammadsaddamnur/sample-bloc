@@ -32,7 +32,7 @@ class Home extends StatelessWidget {
                   );
                 }
                 return RaisedButton(onPressed: () {
-                  BlocProvider.of<HomeBloc>(context).add(GetNota());
+                  BlocProvider.of<HomeBloc>(context).add(GetData());
                 });
               }),
           RaisedButton(
@@ -41,7 +41,7 @@ class Home extends StatelessWidget {
                 BlocProvider.of<HomeBloc>(context).add(GetBiji());
               }),
           RaisedButton(onPressed: () {
-            BlocProvider.of<HomeBloc>(context).add(GetNota());
+            BlocProvider.of<HomeBloc>(context).add(GetData());
           })
         ],
       ),

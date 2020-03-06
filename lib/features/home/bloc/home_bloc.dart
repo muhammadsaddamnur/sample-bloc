@@ -17,7 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   Stream<HomeState> mapEventToState(
     HomeEvent event,
   ) async* {
-    if (event is GetNota) {
+    if (event is GetData) {
       yield* _loadData();
     } else if (event is GetBiji) {
       yield HomeFailed('wkwkwk');
