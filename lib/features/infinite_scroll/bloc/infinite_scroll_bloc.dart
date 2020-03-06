@@ -40,15 +40,20 @@ class InfiniteScrollBloc
     if (result == null) {
       yield InfiniteScrollLoading();
     }
+
     if (response != null) {
       data = await compute(
           infiniteScrollModelFromJson, response.response.toString());
       debugPrint(response.statusCode.toString());
       if (response.statusCode == 200) {
-        if (result != null) {
-          yield InfiniteScrollSuccess(result: result + data);
+        if (data.isEmpty) {
+          yield InfiniteScrollSuccess(result: result, isLoading: false);
         } else {
-          yield InfiniteScrollSuccess(result: data);
+          if (result != null) {
+            yield InfiniteScrollSuccess(result: result + data, isLoading: true);
+          } else {
+            yield InfiniteScrollSuccess(result: data, isLoading: true);
+          }
         }
       } else {
         yield InfiniteScrollFailed('Error Nih Kampret');

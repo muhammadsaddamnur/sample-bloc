@@ -38,7 +38,7 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
                       .add(PullScroll());
                 },
                 onRefresh: () {},
-                isLoading: true,
+                isLoading: state.isLoading,
                 child: (index) {
                   return UiList1(
                     text: index.toString() + ' ' + state.result[index].title,
@@ -46,15 +46,6 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
                   );
                 },
               );
-
-              // ListView.builder(
-              //     itemCount: state.result.length,
-              //     itemBuilder: (context, index) {
-              //       return UiList1(
-              //         text: index.toString() + ' ' + state.result[index].title,
-              //         onTap: () {},
-              //       );
-              //     });
             }
             return Center(child: Text('data'));
           }),

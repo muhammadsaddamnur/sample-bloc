@@ -13,6 +13,11 @@ class InfiniteScrollLoading extends InfiniteScrollState {
   String toString() => 'Loading data';
 }
 
+class InfiniteScrollLoadingMore extends InfiniteScrollState {
+  @override
+  String toString() => 'Loading data';
+}
+
 class InfiniteScrollSuccess extends InfiniteScrollState {
   final List<InfiniteScrollModel> result;
   final bool isLoading;
