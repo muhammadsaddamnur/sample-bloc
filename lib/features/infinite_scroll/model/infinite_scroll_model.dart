@@ -1,29 +1,31 @@
 // To parse this JSON data, do
 //
-//     final homeModel = homeModelFromJson(jsonString);
+//     final InfiniteScrollModel = InfiniteScrollModelFromJson(jsonString);
 
 import 'dart:convert';
 
-List<HomeModel> homeModelFromJson(String str) =>
-    List<HomeModel>.from(json.decode(str).map((x) => HomeModel.fromJson(x)));
+List<InfiniteScrollModel> infiniteScrollModelFromJson(String str) =>
+    List<InfiniteScrollModel>.from(
+        json.decode(str).map((x) => InfiniteScrollModel.fromJson(x)));
 
-String homeModelToJson(List<HomeModel> data) =>
+String infiniteScrollModelToJson(List<InfiniteScrollModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class HomeModel {
+class InfiniteScrollModel {
   int userId;
   int id;
   String title;
   String body;
 
-  HomeModel({
+  InfiniteScrollModel({
     this.userId,
     this.id,
     this.title,
     this.body,
   });
 
-  factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
+  factory InfiniteScrollModel.fromJson(Map<String, dynamic> json) =>
+      InfiniteScrollModel(
         userId: json["userId"] == null ? null : json["userId"],
         id: json["id"] == null ? null : json["id"],
         title: json["title"] == null ? null : json["title"],

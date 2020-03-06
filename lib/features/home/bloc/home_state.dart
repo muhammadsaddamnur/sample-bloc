@@ -14,8 +14,7 @@ class HomeLoading extends HomeState {
 }
 
 class HomeSuccess extends HomeState {
-  final List<NotaModel> result;
-
+  final List<HomeModel> result;
   HomeSuccess(this.result);
 
   @override

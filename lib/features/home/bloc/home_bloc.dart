@@ -28,10 +28,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 Stream<HomeState> _loadData() async* {
   ResponseModel response = await ApiServices.request(
       methodRequest: MethodRequest.get, endpoint: 'posts');
-  List<NotaModel> data;
+  List<HomeModel> data;
   yield HomeLoading();
   if (response != null) {
-    data = await compute(notaModelFromJson, response.response.toString());
+    data = await compute(homeModelFromJson, response.response.toString());
     if (response.statusCode == 200) {
       yield HomeSuccess(data);
     } else {
