@@ -22,33 +22,37 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Contoh Infinite'),
+        ),
         body: SafeArea(
-      child: BlocBuilder(
-          bloc: widget.infiniteScrollBloc,
-          builder: (context, state) {
-            if (state is InfiniteScrollLoading) {
-              return Center(child: CircularProgressIndicator());
-            } else if (state is InfiniteScrollFailed) {
-              return Text(state.error);
-            } else if (state is InfiniteScrollSuccess) {
-              return UiInfiniteScroll(
-                itemCount: state.result.length,
-                onPull: () {
-                  BlocProvider.of<InfiniteScrollBloc>(context)
-                      .add(PullScroll());
-                },
-                onRefresh: () {},
-                isLoading: state.isLoading,
-                child: (index) {
-                  return UiList1(
-                    text: index.toString() + ' ' + state.result[index].title,
-                    onTap: () {},
+          child: BlocBuilder(
+              bloc: widget.infiniteScrollBloc,
+              builder: (context, state) {
+                if (state is InfiniteScrollLoading) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (state is InfiniteScrollFailed) {
+                  return Text(state.error);
+                } else if (state is InfiniteScrollSuccess) {
+                  return UiInfiniteScroll(
+                    itemCount: state.result.length,
+                    onPull: () {
+                      BlocProvider.of<InfiniteScrollBloc>(context)
+                          .add(PullScroll());
+                    },
+                    onRefresh: () {},
+                    isLoading: state.isLoading,
+                    child: (index) {
+                      return UiList1(
+                        text:
+                            index.toString() + ' ' + state.result[index].title,
+                        onTap: () {},
+                      );
+                    },
                   );
-                },
-              );
-            }
-            return Center(child: Text('data'));
-          }),
-    ));
+                }
+                return Center(child: Text('data'));
+              }),
+        ));
   }
 }
