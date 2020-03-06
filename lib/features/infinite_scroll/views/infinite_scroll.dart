@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:samplebloc/core/ui/ui_infinite_scroll.dart';
 import 'package:samplebloc/core/ui/ui_list.dart';
 import 'package:samplebloc/features/infinite_scroll/bloc/infinite_scroll_bloc.dart';
 
@@ -22,28 +23,41 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-      child: BlocProvider<InfiniteScrollBloc>(
-        create: (BuildContext context) => InfiniteScrollBloc(),
-        child: BlocBuilder(
-            bloc: widget.infiniteScrollBloc,
-            builder: (context, state) {
-              if (state is InfiniteScrollLoading) {
-                return Center(child: CircularProgressIndicator());
-              } else if (state is InfiniteScrollFailed) {
-                return Text(state.error);
-              } else if (state is InfiniteScrollSuccess) {
-                return ListView.builder(
-                    itemCount: state.result.length,
-                    itemBuilder: (context, index) {
-                      return UiList1(
-                        text: state.result[index].title,
-                        onTap: () {},
-                      );
-                    });
-              }
+      child: BlocBuilder(
+          bloc: widget.infiniteScrollBloc,
+          builder: (context, state) {
+            if (state is InfiniteScrollLoading) {
               return Center(child: CircularProgressIndicator());
-            }),
-      ),
+            } else if (state is InfiniteScrollFailed) {
+              return Text(state.error);
+            } else if (state is InfiniteScrollSuccess) {
+              return UiInfiniteScroll(
+                itemCount: state.result.length,
+                onPull: () {
+                  BlocProvider.of<InfiniteScrollBloc>(context)
+                      .add(PullScroll());
+                },
+                onRefresh: () {},
+                isLoading: true,
+                child: (index) {
+                  return UiList1(
+                    text: index.toString() + ' ' + state.result[index].title,
+                    onTap: () {},
+                  );
+                },
+              );
+
+              // ListView.builder(
+              //     itemCount: state.result.length,
+              //     itemBuilder: (context, index) {
+              //       return UiList1(
+              //         text: index.toString() + ' ' + state.result[index].title,
+              //         onTap: () {},
+              //       );
+              //     });
+            }
+            return Center(child: Text('data'));
+          }),
     ));
   }
 }

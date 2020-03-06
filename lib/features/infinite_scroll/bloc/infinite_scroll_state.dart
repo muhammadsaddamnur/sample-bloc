@@ -15,8 +15,9 @@ class InfiniteScrollLoading extends InfiniteScrollState {
 
 class InfiniteScrollSuccess extends InfiniteScrollState {
   final List<InfiniteScrollModel> result;
+  final bool isLoading;
 
-  InfiniteScrollSuccess(this.result);
+  InfiniteScrollSuccess({this.result, this.isLoading});
 
   @override
   String toString() => 'success :  {result :$result}';

@@ -9,21 +9,22 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<HomeBloc>(
+          create: (BuildContext context) => HomeBloc(),
+        ),
+        BlocProvider<InfiniteScrollBloc>(
+          create: (BuildContext context) => InfiniteScrollBloc(),
+        ),
+      ],
+      child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MultiBlocProvider(
-          providers: [
-            BlocProvider<HomeBloc>(
-              create: (BuildContext context) => HomeBloc(),
-            ),
-            BlocProvider<InfiniteScrollBloc>(
-              create: (BuildContext context) => InfiniteScrollBloc(),
-            ),
-          ],
-          child: Home(),
-        ));
+        home: Home(),
+      ),
+    );
   }
 }

@@ -23,22 +23,33 @@ class InfiniteScrollBloc
       if (state is InfiniteScrollInitial) {
         yield* _loadData(start: 0);
       } else if (currentState is InfiniteScrollSuccess) {
-        yield* _loadData(start: currentState.result.length);
+        yield* _loadData(
+            start: currentState.result.length, result: currentState.result);
       }
     }
   }
 
-  Stream<InfiniteScrollState> _loadData({start}) async* {
+  Stream<InfiniteScrollState> _loadData({start, result}) async* {
+    debugPrint((start + 20).toString());
     ResponseModel response = await ApiServices.request(
         methodRequest: MethodRequest.get,
         endpoint: 'posts?_start=${start.toString()}&_limit=20');
+    debugPrint(response.toString());
     List<InfiniteScrollModel> data;
-    yield InfiniteScrollLoading();
+
+    if (result == null) {
+      yield InfiniteScrollLoading();
+    }
     if (response != null) {
       data = await compute(
           infiniteScrollModelFromJson, response.response.toString());
+      debugPrint(response.statusCode.toString());
       if (response.statusCode == 200) {
-        yield InfiniteScrollSuccess(data);
+        if (result != null) {
+          yield InfiniteScrollSuccess(result: result + data);
+        } else {
+          yield InfiniteScrollSuccess(result: data);
+        }
       } else {
         yield InfiniteScrollFailed('Error Nih Kampret');
       }
