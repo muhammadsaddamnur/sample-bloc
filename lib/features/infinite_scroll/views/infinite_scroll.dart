@@ -51,7 +51,7 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
                     },
                   );
                 }
-                return Center(child: Text('data'));
+                return Center(child: CircularProgressIndicator());
               }),
         ));
   }

@@ -73,7 +73,8 @@ class _UiInfiniteScrollState extends State<UiInfiniteScroll> {
                             ? widget.itemCount + 1
                             : widget.itemCount)
                     ? widget.isLoading == true
-                        ? CircularProgressIndicator()
+                        ? Container(
+                            child: Center(child: CircularProgressIndicator()))
                         : widget.itemCount == 0
                             ? UiTextSubTitle(text: widget.message)
                             : Container(
