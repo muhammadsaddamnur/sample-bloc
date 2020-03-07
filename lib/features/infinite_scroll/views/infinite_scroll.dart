@@ -40,7 +40,10 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
                       BlocProvider.of<InfiniteScrollBloc>(context)
                           .add(PullScroll());
                     },
-                    onRefresh: () {},
+                    onRefresh: () {
+                      BlocProvider.of<InfiniteScrollBloc>(context)
+                          .add(PullScroll());
+                    },
                     isLoading: state.isLoading,
                     child: (index) {
                       return UiList1(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:samplebloc/core/ui/ui_text.dart';
 
 class UiInfiniteScroll extends StatefulWidget {
@@ -54,7 +53,12 @@ class _UiInfiniteScrollState extends State<UiInfiniteScroll> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: RefreshIndicator(
-      onRefresh: widget.onRefresh,
+      onRefresh: () async {
+        if (widget.onRefresh != null) {
+          await widget.onRefresh();
+        }
+        return null;
+      },
       color: Colors.green,
       backgroundColor: Colors.white,
       child: Container(
