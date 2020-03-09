@@ -36,6 +36,8 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
                 } else if (state is InfiniteScrollSuccess) {
                   return UiInfiniteScroll(
                     itemCount: state.result.length,
+                    message: '',
+                    topFloat: true,
                     onPull: () {
                       BlocProvider.of<InfiniteScrollBloc>(context)
                           .add(PullScroll());
