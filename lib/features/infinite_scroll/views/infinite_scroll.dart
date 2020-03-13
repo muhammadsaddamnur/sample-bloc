@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:samplebloc/core/ui/ui_infinite_scroll.dart';
 import 'package:samplebloc/core/ui/ui_list.dart';
+import 'package:samplebloc/core/ui/ui_text.dart';
 import 'package:samplebloc/features/infinite_scroll/bloc/infinite_scroll_bloc.dart';
+
+import 'package:samplebloc/features/search/views/search.dart';
 
 class InfiniteScroll extends StatefulWidget {
   final InfiniteScrollBloc infiniteScrollBloc;
@@ -24,6 +28,15 @@ class _InfiniteScrollState extends State<InfiniteScroll> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Contoh Infinite'),
+          actions: <Widget>[
+            RaisedButton(
+                color: Colors.white,
+                child: UiTextSubTitle(text: 'Search'),
+                onPressed: () {
+                  Navigator.push(context,
+                      CupertinoPageRoute(builder: (context) => SearchView()));
+                })
+          ],
         ),
         body: SafeArea(
           child: BlocBuilder(
